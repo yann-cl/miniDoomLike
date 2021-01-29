@@ -8,12 +8,13 @@ namespace miniDoomLike
 
     class GameLogic
     {
-        //private GameSprite playerSprite;
+        private GameMap map;
         private int cpt1, cpt2, cpt3;
         public Size Resolution { get; set; }
 
         public void Load()
         {
+            map = new GameMap();
             this.cpt1 = 0;
             this.cpt2 = 0;
             this.cpt3 = 0;
@@ -32,7 +33,7 @@ namespace miniDoomLike
         public void Draw(Graphics gfx)
         {
             // Draw Background Color
-            gfx.FillRectangle(new SolidBrush(Color.FromArgb(cpt1,cpt2,cpt3)), new Rectangle(0, 0, 200, 200));
+            /*gfx.FillRectangle(new SolidBrush(Color.FromArgb(cpt1,cpt2,cpt3)), new Rectangle(0, 0, 200, 200));
             cpt1++;
             if(cpt1 > 255){
                 cpt1 = 0;
@@ -44,6 +45,11 @@ namespace miniDoomLike
             }
             if(cpt3 > 255){
                 cpt3 = 0;
+            }*/
+            for(int i=0;i<map.cases.GetLength(0);i++){
+                for(int j=0;j<map.cases.GetLength(1);j++){
+                    gfx.FillRectangle(new SolidBrush(map.cases[i,j]), new Rectangle(i,j,1,1));
+                }
             }
         }
     }
