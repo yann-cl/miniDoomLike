@@ -1,6 +1,6 @@
 ﻿namespace miniDoomLike
 {
-    partial class Form1
+    partial class DoomLike
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(200, 200);
+            this.Text = "DoomLike";
         }
 
         #endregion
