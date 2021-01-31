@@ -5,6 +5,7 @@ namespace miniDoomLike{
     {
         
         public Color[,] cases{get; private set;}
+        public Vector2D entryPoint{get; private set;}
         //créer et remplit un tableau map
         public GameMap(){
             cases= new Color[200,200];
@@ -13,8 +14,11 @@ namespace miniDoomLike{
                     this.cases[i,j]= Color.White;
                 }
             }
+            //mur de la map
             contour(Color.Red);
-
+            //point d'entrée de la map
+            entryPoint = new Vector2D(2,20);
+            cases[(int)entryPoint.x,(int)entryPoint.y] = Color.Orange;
         }
         //init le contour de la map de couleur différente
         private void contour(Color couleur){

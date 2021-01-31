@@ -16,7 +16,7 @@ namespace miniDoomLike
         public void Load()
         {
             map = new GameMap();
-            player = new Player();
+            player = new Player(map.entryPoint, new Vector2D(0,1));
         }
 
         public void Unload()
@@ -36,11 +36,11 @@ namespace miniDoomLike
             for(int i=0;i<map.cases.GetLength(0);i++){
                 for(int j=0;j<map.cases.GetLength(1);j++){
                     brush.Color = map.cases[i,j];
-                    gfx.FillRectangle(brush, new Rectangle(i,j,1,1));
+                    gfx.FillRectangle(brush, new Rectangle(i*2,j*2,2,2));
                 }
             }
             brush.Color = player.skin;
-            gfx.FillRectangle(brush, new Rectangle((int)Math.Round(player.coord.x), (int)Math.Round(player.coord.y),1,1));
+            gfx.FillRectangle(brush, new Rectangle((int)Math.Round(player.coord.x)*2, (int)Math.Round(player.coord.y)*2,2,2));
         }
     }
 }
