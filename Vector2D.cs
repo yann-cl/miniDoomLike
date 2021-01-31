@@ -11,5 +11,11 @@ namespace miniDoomLike
             this.y = paramY;
         }
 
+        public void sum(Vector2D a)
+        {
+            x += a.x;
+            y += a.y;
+        }
+
     }
 }

@@ -38,7 +38,7 @@ namespace miniDoomLike
             // Initialize Game
             GameLogic myGame = new GameLogic();
             myGame.Load();
-            myGame.Resolution = new Size(resolution.Width, resolution.Height);
+            myGame.resolution = new Size(resolution.Width, resolution.Height);
 
             graphicsTimer = new Timer();
             graphicsTimer.Interval = 1000 / 60; // a regler pour les fps

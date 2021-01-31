@@ -1,18 +1,55 @@
 using System.Drawing;
-
+using System;
+using System.Diagnostics;
 namespace miniDoomLike
 {
     class Player
     {
         public Color skin{get; private set;}
         public Vector2D coord{get; private set;}
-        public Vector2D dirView{get; private set;}
+        public double dirView{get; private set;} // radians
+
+        public double vision{get; private set;} // radians
+        
 
         //création d'une entité joueur (à placer sur la map)
-        public Player(Vector2D view, Vector2D dir){
+        public Player(Vector2D position, double dir, double v){
             this.skin = Color.Blue;
-            this.coord = view;
-            this.dirView = dir;
+            this.coord = position;
+            this.dirView = dir%(Math.PI*2);
+            this.vision = v%(Math.PI*2);
+        }
+
+        public void drawPlayerFOV(Graphics gfx, GameMap gamemap, Size resolution)
+        {
+            SolidBrush brush = new SolidBrush(Color.Yellow);
+
+            Vector2D v = new Vector2D(coord.x, coord.y);
+            Vector2D step = new Vector2D(Math.Cos(this.dirView),Math.Sin(this.dirView));
+
+            //dessin fov
+            drawRay(gfx,gamemap,this.dirView,brush);
+
+            double modRay = this.vision/resolution.Width;
+            for(int i = 0; i < resolution.Width/2;i++){
+                drawRay(gfx,gamemap,this.dirView + i*modRay,brush);
+                drawRay(gfx,gamemap,this.dirView - i*modRay,brush);
+            }
+
+            //position joueur
+            brush.Color = this.skin;
+            gfx.FillRectangle(brush, new Rectangle((int)Math.Round(coord.x)*2, (int)Math.Round(coord.y)*2,2,2));
+        }
+
+        public void drawRay(Graphics gfx, GameMap gamemap, double angle, SolidBrush brush){
+            
+            Vector2D v = new Vector2D(coord.x, coord.y);
+            Vector2D step = new Vector2D(Math.Cos(angle),Math.Sin(angle));
+
+            while(!gamemap.cases[(int)Math.Round(v.x),(int)Math.Round(v.y)].Equals(Color.Red)){
+                gfx.FillRectangle(brush, new Rectangle((int)Math.Round(v.x)*2, (int)Math.Round(v.y)*2,2,2));
+                v.sum(step);
+            }
         }
 
     }

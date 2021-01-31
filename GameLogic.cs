@@ -11,12 +11,13 @@ namespace miniDoomLike
         private GameMap map;
         private Player player;
         
-        public Size Resolution { get; set; }
+        public Size resolution { get; set; }
 
         public void Load()
         {
             map = new GameMap();
-            player = new Player(map.entryPoint, new Vector2D(0,1));
+            int vision = 100;
+            player = new Player(map.entryPoint, 0, Math.PI * vision / 180.0);
         }
 
         public void Unload()
@@ -40,7 +41,7 @@ namespace miniDoomLike
                 }
             }
             brush.Color = player.skin;
-            gfx.FillRectangle(brush, new Rectangle((int)Math.Round(player.coord.x)*2, (int)Math.Round(player.coord.y)*2,2,2));
+            player.drawPlayerFOV(gfx, map, resolution);
         }
     }
 }
