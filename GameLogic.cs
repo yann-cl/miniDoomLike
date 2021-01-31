@@ -31,13 +31,16 @@ namespace miniDoomLike
 
         public void Draw(Graphics gfx)
         {
+            SolidBrush brush = new SolidBrush(Color.Gray);
             // Draw Background Color
             for(int i=0;i<map.cases.GetLength(0);i++){
                 for(int j=0;j<map.cases.GetLength(1);j++){
-                    gfx.FillRectangle(new SolidBrush(map.cases[i,j]), new Rectangle(i,j,1,1));
+                    brush.Color = map.cases[i,j];
+                    gfx.FillRectangle(brush, new Rectangle(i,j,1,1));
                 }
             }
-            gfx.FillRectangle(new SolidBrush(player.skin), new Rectangle(Math.Round(player.coord.X), Math.Round(player.coord.Y),1,1));
+            brush.Color = player.skin;
+            gfx.FillRectangle(brush, new Rectangle((int)Math.Round(player.coord.x), (int)Math.Round(player.coord.y),1,1));
         }
     }
 }
