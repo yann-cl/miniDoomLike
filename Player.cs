@@ -48,8 +48,11 @@ namespace miniDoomLike
 
             int d = 0;
             brush.Color = Color.Yellow;
+            Rectangle r = new Rectangle((int)Math.Round(v.x)*2, (int)Math.Round(v.y)*2,2,2);
             while(!gamemap.cases[(int)Math.Round(v.x),(int)Math.Round(v.y)].Equals(Color.Red)){
-                gfx.FillRectangle(brush, new Rectangle((int)Math.Round(v.x)*2, (int)Math.Round(v.y)*2,2,2));
+                gfx.FillRectangle(brush, r);
+                r.X = (int)Math.Round(v.x)*2;
+                r.Y = (int)Math.Round(v.y)*2;
                 v.sum(step);
                 d += 1;
             }
