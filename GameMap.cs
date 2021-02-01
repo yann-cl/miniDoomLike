@@ -27,11 +27,11 @@ namespace miniDoomLike{
             
             for(int i=0;i<this.cases.GetLength(0);i++){
                 this.cases[i,0]= couleur;
-                this.cases[i,199]= couleur;
+                this.cases[i,(this.cases.GetLength(0)/1)-1]= couleur;
             }
             for(int j=0;j<this.cases.GetLength(1);j++){
                 this.cases[0,j]= couleur;
-                this.cases[199,j]= couleur;
+                this.cases[(this.cases.GetLength(1)/1)-1,j]= couleur;
             }
         }
         private void murs(Color couleur){
@@ -52,9 +52,9 @@ namespace miniDoomLike{
             for(int i=this.cases.GetLength(0)/4;i<3*this.cases.GetLength(0)/4;i++){
                 this.cases[i,this.cases.GetLength(0)/3]= couleur;
             }
-            for(int j=this.cases.GetLength(0)/8;j<this.cases.GetLength(1)/3;j++){
-                this.cases[this.cases.GetLength(0)/4,j]= couleur;
-                this.cases[3*this.cases.GetLength(0)/4,j]= couleur;
+            for(int j=this.cases.GetLength(1)/8;j<(this.cases.GetLength(1)/3)+1;j++){
+                this.cases[this.cases.GetLength(1)/4,j]= couleur;
+                this.cases[3*this.cases.GetLength(1)/4,j]= couleur;
             }
             //bas de la map
             for(int i=this.cases.GetLength(0)/4;i<3*this.cases.GetLength(0)/4;i++){
@@ -66,10 +66,9 @@ namespace miniDoomLike{
                     this.cases[j,7*this.cases.GetLength(0)/8]= couleur;
                 }
             }
-            
-            for(int j=2*this.cases.GetLength(0)/3;j<7*this.cases.GetLength(1)/8;j++){
-                this.cases[this.cases.GetLength(0)/4,j]= couleur;
-                this.cases[3*this.cases.GetLength(0)/4,j]= couleur;
+            for(int j=2*this.cases.GetLength(1)/3;j<(7*this.cases.GetLength(1)/8)+1;j++){
+                this.cases[this.cases.GetLength(1)/4,j]= couleur;
+                this.cases[3*this.cases.GetLength(1)/4,j]= couleur;
             }
         }
     }
