@@ -30,7 +30,7 @@ namespace miniDoomLike
             //dessin fov
             drawRay(gfx,gamemap,this.dirView,brush,resolution,0);
 
-            double modRay = this.vision/resolution.Width;
+            double modRay = this.vision/(resolution.Width/2);
             for(int i = 0; i < resolution.Width/4;i++){
                 drawRay(gfx,gamemap,this.dirView + i*modRay,brush, resolution,i);
                 drawRay(gfx,gamemap,this.dirView - i*modRay,brush, resolution,-i);
