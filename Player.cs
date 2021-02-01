@@ -7,7 +7,7 @@ namespace miniDoomLike
     {
         public Color skin{get; private set;}
         public Vector2D coord{get; private set;}
-        public double dirView{get; private set;} // radians
+        public double dirView{get; set;} // radians
 
         public double vision{get; private set;} // radians
         

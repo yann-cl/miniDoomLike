@@ -42,6 +42,7 @@ namespace miniDoomLike
             }
             brush.Color = player.skin;
             player.drawPlayerFOV(gfx, map, resolution);
+            player.dirView += 0.05; // rotation view to test
         }
     }
 }
