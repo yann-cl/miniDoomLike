@@ -33,12 +33,10 @@ namespace miniDoomLike
 
         private void DoomLike_Load(object sender, EventArgs e)
         {
-            Rectangle resolution = Screen.PrimaryScreen.Bounds;
-
             // Initialize Game
             GameLogic myGame = new GameLogic();
             myGame.Load();
-            myGame.resolution = new Size(resolution.Width, resolution.Height);
+            myGame.resolution = new Size(this.Size.Width, this.Size.Height);
 
             graphicsTimer = new Timer();
             graphicsTimer.Interval = 1000 / 60; // a regler pour les fps
