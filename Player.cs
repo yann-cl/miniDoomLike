@@ -27,6 +27,8 @@ namespace miniDoomLike
             Vector2D v = new Vector2D(coord.x, coord.y);
             Vector2D step = new Vector2D(Math.Cos(this.dirView),Math.Sin(this.dirView));
 
+            int gameR = GameLogic.ratio;
+
             //dessin fov
             drawRay(gfx,gamemap,this.dirView,brush,resolution,0);
 
@@ -38,7 +40,7 @@ namespace miniDoomLike
 
             //position joueur
             brush.Color = this.skin;
-            gfx.FillRectangle(brush, new Rectangle((int)Math.Round(coord.x)*2, (int)Math.Round(coord.y)*2,2,2));
+            gfx.FillRectangle(brush, new Rectangle((int)Math.Round(coord.x)*gameR, (int)Math.Round(coord.y)*gameR,gameR,gameR));
         }
 
         public void drawRay(Graphics gfx, GameMap gamemap, double angle, SolidBrush brush, Size resolution,int pos){
@@ -47,23 +49,29 @@ namespace miniDoomLike
             Vector2D step = new Vector2D(Math.Cos(angle),Math.Sin(angle));
 
             int d = 0;
+            int gameR = GameLogic.ratio;
             brush.Color = Color.Yellow;
-            Rectangle r = new Rectangle((int)Math.Round(v.x)*2, (int)Math.Round(v.y)*2,2,2);
+            Rectangle r = new Rectangle((int)Math.Round(v.x)*gameR, (int)Math.Round(v.y)*gameR,gameR,gameR);
             while(!gamemap.cases[(int)Math.Round(v.x),(int)Math.Round(v.y)].Equals(Color.Red)){
                 gfx.FillRectangle(brush, r);
-                r.X = (int)Math.Round(v.x)*2;
-                r.Y = (int)Math.Round(v.y)*2;
+                r.X = (int)Math.Round(v.x)*gameR;
+                r.Y = (int)Math.Round(v.y)*gameR;
                 v.sum(step);
                 d += 1;
             }
             
             brush.Color = Color.Green;
-            gfx.FillRectangle(brush, new Rectangle((int)Math.Round(v.x)*2, (int)Math.Round(v.y)*2,2,2));
+            r.X = (int)Math.Round(v.x)*gameR;
+            r.Y = (int)Math.Round(v.y)*gameR;
+            gfx.FillRectangle(brush, r);
 
             int colSize = resolution.Height/d;
             brush.Color = Color.Red;
-            //Debug.WriteLine(resolution.Width);
-            gfx.FillRectangle(brush, new Rectangle(3*resolution.Width/4 + pos, resolution.Height/2 - colSize/2,2,colSize));
+            r.X = 3*resolution.Width/4 + pos;
+            r.Y = resolution.Height/2 - colSize/2;
+            r.Width = gameR;
+            r.Height = colSize;
+            gfx.FillRectangle(brush, r);
 
         }
 

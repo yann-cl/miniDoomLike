@@ -13,11 +13,14 @@ namespace miniDoomLike
         
         public Size resolution { get; set; }
 
+        public static int ratio {get; private set;}
+
         public void Load()
         {
             map = new GameMap();
             int vision = 100;
             player = new Player(map.entryPoint, 0, Math.PI * vision / 180.0);
+            ratio = 1;
         }
 
         public void Unload()
@@ -33,11 +36,12 @@ namespace miniDoomLike
         public void Draw(Graphics gfx)
         {
             SolidBrush brush = new SolidBrush(Color.Gray);
+            int gameR = GameLogic.ratio;
             // Draw Background Color
             for(int i=0;i<map.cases.GetLength(0);i++){
                 for(int j=0;j<map.cases.GetLength(1);j++){
                     brush.Color = map.cases[i,j];
-                    gfx.FillRectangle(brush, new Rectangle(i*2,j*2,2,2));
+                    gfx.FillRectangle(brush, new Rectangle(i*gameR,j*gameR,gameR,gameR));
                 }
             }
             brush.Color = player.skin;
