@@ -58,7 +58,7 @@ namespace miniDoomLike
             int gameR = GameLogic.ratio;
             brush.Color = Color.Yellow;
             Rectangle r = new Rectangle((int)Math.Round(v.x)*gameR, (int)Math.Round(v.y)*gameR,gameR,gameR);
-            while(!gamemap.cases[(int)Math.Round(v.x),(int)Math.Round(v.y)].Equals(Color.Red)){
+            while(!gamemap.cases[(int)Math.Round(v.x),(int)Math.Round(v.y)].block){
                 gfx.FillRectangle(brush, r);
                 r.X = (int)Math.Round(v.x)*gameR;
                 r.Y = (int)Math.Round(v.y)*gameR;

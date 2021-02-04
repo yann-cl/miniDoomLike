@@ -42,7 +42,7 @@ namespace miniDoomLike
             // Draw Background Color
             for(int i=0;i<map.cases.GetLength(0);i++){
                 for(int j=0;j<map.cases.GetLength(1);j++){
-                    brush.Color = map.cases[i,j];
+                    brush.Color = map.cases[i,j].texture;
                     gfx.FillRectangle(brush, new Rectangle(i*gameR,j*gameR,gameR,gameR));
                 }
             }
