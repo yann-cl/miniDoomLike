@@ -28,6 +28,8 @@ namespace miniDoomLike
             movements = new Dictionary<int, bool>();
             //movements possible
             movements.Add(90,false); //touche Z
+            movements.Add(81,false); //touche Q
+            movements.Add(68,false); //touche D
         }
 
         /// <summary>

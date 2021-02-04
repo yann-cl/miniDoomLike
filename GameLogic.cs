@@ -33,6 +33,10 @@ namespace miniDoomLike
         {
             if(movements[90]) // Z --> dir == player view
                 player.move(player.dirView);
+            if(movements[81]) // Q --> rotate angle
+                player.rotate(-0.1);
+            if(movements[68]) // D --> rotate angle
+                player.rotate(0.1);
         }
 
         public void Draw(Graphics gfx)
