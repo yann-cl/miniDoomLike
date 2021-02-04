@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Input;
+using System.Collections.Generic;
 
 namespace miniDoomLike
 {
@@ -28,9 +29,10 @@ namespace miniDoomLike
             //empty for now
         }
 
-        public void Update(long gameTime)
+        public void Update(Dictionary<int,bool> movements)
         {
-            // empty for now
+            if(movements[90]) // Z --> dir == player view
+                player.move(player.dirView);
         }
 
         public void Draw(Graphics gfx)
@@ -46,7 +48,7 @@ namespace miniDoomLike
             }
             brush.Color = player.skin;
             player.drawPlayerFOV(gfx, map, resolution);
-            player.dirView += 0.05; // rotation view to test
+            //player.dirView += 0.05; // rotation view to test
         }
     }
 }

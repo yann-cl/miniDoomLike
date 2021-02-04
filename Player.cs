@@ -11,6 +11,7 @@ namespace miniDoomLike
 
         public double vision{get; private set;} // radians
         
+        public double speed{get; set;}
 
         //création d'une entité joueur (à placer sur la map)
         public Player(Vector2D position, double dir, double v){
@@ -18,6 +19,11 @@ namespace miniDoomLike
             this.coord = position;
             this.dirView = dir%(Math.PI*2);
             this.vision = v%(Math.PI*2);
+            this.speed = 0.1; // speed test
+        }
+
+        public void move(double dir){
+            this.coord.sum(new Vector2D(Math.Cos(dir)*this.speed,Math.Sin(dir)*this.speed));
         }
 
         public void drawPlayerFOV(Graphics gfx, GameMap gamemap, Size resolution)

@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace miniDoomLike
 {
@@ -12,7 +13,9 @@ namespace miniDoomLike
         /// <summary>
         /// Status of GameLoop
         /// </summary>
-        public bool Running { get; private set; }
+        public bool running { get; private set; }
+
+        private Dictionary<int,bool> movements {get; set; }
 
         /// <summary>
         /// Load Game into GameLoop
@@ -20,6 +23,11 @@ namespace miniDoomLike
         public void Load(GameLogic gameObj)
         {
             game = gameObj;
+            running = false;
+
+            movements = new Dictionary<int, bool>();
+            //movements possible
+            movements.Add(90,false); //touche Z
         }
 
         /// <summary>
@@ -28,30 +36,25 @@ namespace miniDoomLike
         public async void Start()
         {
 
-            // TODO with control and gamelogic
-            /*if (game == null)
+            if (game == null)
                 throw new ArgumentException("Game not loaded!");
 
-            // Load game content
-            game.Load();
+            running = true;
 
-            // Set gameloop state
-            Running = true;
+            //Stopwatch chrono = Stopwatch.StartNew();
 
-            // Set previous game time
-            Stopwatch chrono = Stopwatch.StartNew();
-
-            while (Running)
+            while (running)
             {
                 // Calculate the time elapsed since the last game loop cycle
-                long tmp = chrono.ElapsedMilliseconds;
+                //long tmp = chrono.ElapsedMilliseconds;
                 // Update the current previous game time
-                chrono.Restart();
+                //chrono.Restart();
                 // Update the game
-                game.Update(tmp);
+                game.Update(movements);
                 // Update Game at 60fps
-                await Task.Delay((int)Math.Max(8 - chrono.ElapsedMilliseconds, 0));
-            }*/
+                //await Task.Delay((int)Math.Max(8 - chrono.ElapsedMilliseconds, 0));
+                await Task.Delay(8);
+            }
         }
 
         /// <summary>
@@ -59,7 +62,7 @@ namespace miniDoomLike
         /// </summary>
         public void Stop()
         {
-            Running = false;
+            running = false;
             game?.Unload();
         }
 
@@ -69,6 +72,18 @@ namespace miniDoomLike
         public void Draw(Graphics gfx)
         {
             game.Draw(gfx);
+        }
+
+        public void addMovement(int move){
+            if(movements.ContainsKey(move)){
+                movements[move] = true;
+            }
+        }
+
+        public void suppMovement(int move){
+            if(movements.ContainsKey(move)){
+                movements[move] = false;
+            }
         }
     }
 }

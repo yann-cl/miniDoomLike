@@ -25,6 +25,8 @@ namespace miniDoomLike
 
             // Initialize Paint Event
             Paint += DoomLike_Paint;
+            KeyDown += DoomLike_KeyDown;
+            KeyUp += DoomLike_KeyUp;
         }
 
         private void GraphicsTimer_Tick(object sender, EventArgs e){
@@ -55,6 +57,15 @@ namespace miniDoomLike
         {
             // Draw game graphics on Form1
             loop.Draw(e.Graphics);
+        }
+
+        private void DoomLike_KeyUp(object sender, KeyEventArgs e)
+        {
+            loop.suppMovement((int)e.KeyCode);
+        }
+        private void DoomLike_KeyDown(object sender, KeyEventArgs e)
+        {
+            loop.addMovement((int)e.KeyCode);
         }
 
     }
