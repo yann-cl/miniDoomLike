@@ -30,6 +30,9 @@ namespace miniDoomLike
             movements.Add(90,false); //touche Z
             movements.Add(81,false); //touche Q
             movements.Add(68,false); //touche D
+            movements.Add(65,false); //touche A
+            movements.Add(69,false); //touche E
+            movements.Add(83,false); //touche S
         }
 
         /// <summary>

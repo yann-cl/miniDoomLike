@@ -31,12 +31,25 @@ namespace miniDoomLike
 
         public void Update(Dictionary<int,bool> movements)
         {
+
+            //move part
             if(movements[90]) // Z --> dir == player view
                 player.move(player.dirView);
+            if(movements[65]) // A --> dir == player view - pi/2
+                player.move(player.dirView - Math.PI/2);
+            if(movements[69]) // E --> dir == player view + pi/2
+                player.move(player.dirView + Math.PI/2);
+            if(movements[83]) // S --> dir == player view + pi
+                player.move(player.dirView + Math.PI);
+
+
+            //rotate part
+            double r = 0;
             if(movements[81]) // Q --> rotate angle
-                player.rotate(-0.1);
+                r += -0.1;
             if(movements[68]) // D --> rotate angle
-                player.rotate(0.1);
+                r += 0.1;
+            player.rotate(r);
         }
 
         public void Draw(Graphics gfx)
