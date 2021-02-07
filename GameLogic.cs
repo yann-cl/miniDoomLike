@@ -11,7 +11,6 @@ namespace miniDoomLike
     {
         private GameMap map;
         private Player player;
-        
         public Size resolution { get; set; }
 
         public static int ratio {get; private set;}
@@ -31,16 +30,15 @@ namespace miniDoomLike
 
         public void Update(Dictionary<int,bool> movements)
         {
-
             //move part
             if(movements[90]) // Z --> dir == player view
-                player.move(player.dirView);
+                player.move(player.dirView, map);
             if(movements[65]) // A --> dir == player view - pi/2
-                player.move(player.dirView - Math.PI/2);
+                player.move(player.dirView - Math.PI/2, map);
             if(movements[69]) // E --> dir == player view + pi/2
-                player.move(player.dirView + Math.PI/2);
+                player.move(player.dirView + Math.PI/2, map);
             if(movements[83]) // S --> dir == player view + pi
-                player.move(player.dirView + Math.PI);
+                player.move(player.dirView + Math.PI, map);
 
 
             //rotate part
@@ -50,8 +48,9 @@ namespace miniDoomLike
             if(movements[68]) // D --> rotate angle
                 r += 0.1;
             player.rotate(r);
-        }
 
+        }
+        
         public void Draw(Graphics gfx)
         {
             SolidBrush brush = new SolidBrush(Color.Gray);

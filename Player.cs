@@ -13,17 +13,18 @@ namespace miniDoomLike
         
         public double speed{get; private set;}
 
-        //création d'une entité joueur (à placer sur la map)
         public Player(Vector2D position, double dir, double v){
             this.skin = Color.Blue;
             this.coord = position;
             this.dirView = dir%(Math.PI*2);
             this.vision = v%(Math.PI*2);
-            this.speed = 0.1; // speed test
+            this.speed = 0.2; // speed test
         }
 
-        public void move(double dir){
-            this.coord.sum(new Vector2D(Math.Cos(dir)*this.speed,Math.Sin(dir)*this.speed));
+        public void move(double dir, GameMap map){
+            if(!map.cases[(int)(coord.x + Math.Cos(dir)*this.speed), (int)(coord.y + Math.Sin(dir)*this.speed)].block ){
+                this.coord.sum(new Vector2D(Math.Cos(dir)*this.speed,Math.Sin(dir)*this.speed));
+            }
         }
 
         public void rotate(double v){
