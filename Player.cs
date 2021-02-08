@@ -76,7 +76,9 @@ namespace miniDoomLike
             r.Y = (int)Math.Round(v.y)*gameR;
             gfx.FillRectangle(brush, r);
 
-            int colSize = resolution.Height/d;
+            int colSize;
+            colSize = (d > 0) ? colSize = (resolution.Height/d) : colSize = resolution.Height;
+
             brush.Color = Color.Red;
             r.X = 3*resolution.Width/4 + pos;
             r.Y = resolution.Height/2 - colSize/2;
